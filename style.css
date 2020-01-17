@@ -21,6 +21,13 @@ body {
 	font-size: 13pt;
 }
 
+/* 13pt is too big on smaller screens */
+@media (max-width: 1366px) {
+	body {
+		font-size: 12pt !important;
+	}
+}
+
 ul {
 	text-align: left;
 	margin-left: 5%;
@@ -41,13 +48,14 @@ h2 {
 .card {
 	position: relative;
 	overflow: hidden;
-	width: 26em;
-	height: 36em;
+	width: 24em;
+	height: 34em;
 	background: var(--parchment);
 	background-size: cover;
 	border: 2px solid #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 50px #000;
+	padding: 1em;
 }
 
 .right {
@@ -56,36 +64,44 @@ h2 {
 	justify-content: space-between;
 	overflow: auto;
 	text-align: center;
-	padding: 1em;
 }
 
 .portrait {
-	/* Crop to fix the whole card */
-	width: 100%;
-	height: 100%;
+	/* Compensate for the card's padding */
+	margin-left: -1em;
+	margin-top: -1em;
+	width: calc(100% + 2em);
+	height: calc(100% + 2em);
+	
+	/* Crop to fit the whole card */
 	object-fit: cover;
 }
 
 .name-banner {
 	position: absolute;
 	bottom: 7%;
-	width: 100%;
+	margin-left: -1em;
+	width: calc(100% + 1em);
 	background: url("img/text-ribbon.png") bottom no-repeat;
-	background-size: 85% 20%;
+	background-size: 85% 20%; /* Magic numbers that make the image the perfect size */
 	font-family: "Felipa", cursive;
 	font-weight: bold;
 	font-size: 1.6em;
 	text-align: center;
 	color: #fff;
-	padding: 92% 0 16px 0;
+	padding: 92% 0 20px 0; /* More magic numbers */
 }
 
 .decoration {
 	position: absolute;
 	background: url("img/fancy-border.png");
 	background-size: 100% 100%;
-	width: 100%;
-	height: 100%;
+
+	/* Compensate for the card's padding */
+	margin-left: -1em;
+	margin-top: -1em;
+	width: calc(100% + 2em);
+	height: calc(100% + 2em);
 }
 
 .bio-text {
