@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<!-- TODO
-	- Add a flipping animation, with the right side on the back of the left side
-	- Make mobile-friendly
+<!--
+	I now realize this is exactly what React is for.
+	Oh.
 -->
 
 <head>
@@ -11,6 +11,7 @@
     <title>Sociologist Trading Cards</title>
     <link rel="icon" href="favicon.png">
     <link href="style.css" rel="stylesheet">
+
 	<link href="fullpage.min.css" rel="stylesheet">
 	<script src="fullpage.min.js"></script>
 </head>
@@ -32,8 +33,14 @@
 		const people = [
 			{
 				name: "Auguste Comte",
-				born: "January 19, 1798, Montpellier, France",
-				died: "September 5, 1857, Paris, France",
+				born: {
+					date: "January 19, 1798",
+					location: "Montpellier, France"
+				},
+				died: {
+					date: "September 5, 1857",
+					location: "Paris, France"
+				},
 				male: true, // Known issues: non-progressive gendering system
 				mainTheory: "The law of the three stages",
 				significance: "Comte is called the <em>father of sociology</em> and credited for coining the term \"sociology\". He held the idea that all societies develop by going through three different stages: religious, metaphysical, and scientific.",
@@ -43,14 +50,20 @@
 					"Society requires a religion to properly function"
 				],
 				quote: "Know yourself to improve yourself.",
-				portraitPath: "img/portraits/auguste-comte.jpg",
+				portraitPath: "portraits/auguste-comte.jpg",
 				anchor: "comte"
 			},
 
 			{
 				name: "Herbert Spencer",
-				born: "April 27, 1820, Derby, United Kingdom",
-				died: "December 8, 1903, Brighton, United Kingdom",
+				born: {
+					date: "April 27, 1820",
+					location: "Derby, United Kingdom"
+				},
+				died: {
+					date: "December 8, 1903",
+					location: "Brighton, United Kingdom"
+				},
 				male: true,
 				mainTheory: "Social Darwinism",
 				significance: "Herbert Spencer coined the term <em>survival of the fittest</em> (not Charles Darwin!). He saw society as an organism made of interdependent parts. Beside these details, Spencer mostly helped us by giving us the opposite of the right ideas.",
@@ -60,14 +73,20 @@
 					"Findings developed into eugenics, the primary ideology behind nazism"
 				],
 				quote: "The great aim of education is not knowledge but action.",
-				portraitPath: "img/portraits/herbert-spencer.jpg",
+				portraitPath: "portraits/herbert-spencer.jpg",
 				anchor: "spencer"
 			},
 
 			{
 				name: "Karl Marx",
-				born: "May 5, 1818, Trier, Germany",
-				died: "March 14, 1883, London, United Kingdom",
+				born: {
+					date: "May 5, 1818",
+					location: "Trier, Germany"
+				},
+				died: {
+					date: "March 14, 1883",
+					location: "London, United Kingdom"
+				},
 				male: true,
 				mainTheory: "Conflict Theory", //"<strike>Communism</strike><span style='position:absolute; right:1.6em; top:7em; transform:rotate(-5deg)'>Conflict Theory</span>",
 				significance: "Karl Marx did <em>not</em> believe nature was in control of societal roles, unlike Herbert Spencer. He was adamant that people needed to be the change they wanted in society, rather than just trusting things would improve on their own.",
@@ -77,14 +96,20 @@
 					"Capitalism leads to crises—specifically overproduction"
 				],
 				quote: "The philosophers have only interpreted the world, in various ways. The point, however, is to change it.",
-				portraitPath: "img/portraits/karl-marx.jpg",
+				portraitPath: "portraits/karl-marx.jpg",
 				anchor: "communism"
 			},
 
 			{
 				name: "Émile Durkheim",
-				born: "April 15, 1858, Épinal, France",
-				died: "November 15, 1917, Paris, France",
+				born: {
+					date: "April 15, 1858",
+					location: "Épinal, France"
+				},
+				died: {
+					date: "November 15, 1917",
+					location: "Paris, France"
+				},
 				male: true,
 				mainTheory: "Structural Functionalism",
 				significance: "Neither Marx, Spencer, nor Comte used scientific methods in their research. Durkheim was the first to systematically apply scientific methods to sociology. He also specifically made headway on suicide research.",
@@ -94,14 +119,20 @@
 					"The Common Consciousness, made of social facts, drives society"
 				],
 				quote: "When mores are sufficient, laws are unnecessary; when mores are insufficient, laws are unenforceable.",
-				portraitPath: "img/portraits/emile-durkheim.jpg",
+				portraitPath: "portraits/emile-durkheim.jpg",
 				anchor: "durkheim"
 			},
 
 			{
 				name: "Max Weber",
-				born: "April 21, 1864, Erfurt, Germany",
-				died: "June 14, 1920, Munich, Germany", 
+				born: {
+					date: "April 21, 1864",
+					location: "Erfurt, Germany"
+				},
+				died: {
+					date: "June 14, 1920",
+					location: "Munich, Germany"
+				},
 				male: true,
 				mainTheory: "Social Stratification",
 				significance: "Unlike Durkheim, Weber believed people's subjective experiences are very important to sociologists' studies. On top of that, he also believed that class, political parties, and status groups affect a person's place in society.",
@@ -111,7 +142,7 @@
 					"The modern state is an apparatus of rules directed by a group of charismatic leaders"
 				],
 				quote: ". . . man would not have attained the possible unless time and again he had reached out for the impossible.",
-				portraitPath: "img/portraits/max-weber.jpg",
+				portraitPath: "portraits/max-weber.jpg",
 				anchor: "weber"
 			},
 		];
@@ -120,7 +151,7 @@
 		addCards(people, "#fullpage");
 		populateMenu(people, "#menu");
 
-		// Selecting an entry in the menu moves to that section
+		// Selecting an entry in the menu scrolls to that section
 		const menu = document.querySelector("#menu");
 		menu.addEventListener("change", () => {
 			window.location = "#" + menu.value;
