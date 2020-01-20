@@ -7,36 +7,39 @@
 }
 
 :root {
-	--parchment: #E2CA8E url("img/parchment-paper.jpg");
+	--parchment: #E2CA8E url("parchment-paper.jpg");
+	--radius: .5em;
 }
 
 body {
+	margin: 0;
+	font-family: "Crimson Text", serif;
+	font-size: 1.2vw;
+	color: #C32814;
 	background: #E7D6C5 url("img/bouchardon-self-portrait.jpg") repeat fixed center 25%;
 	background-size: cover;
-	font-family: "Crimson Text", serif;
-	margin: 0;
-	padding: 0;
-	color: #C32814;
 	animation: 1s fadein;
-	font-size: 13pt;
 }
 
-/* 13pt is too big on smaller screens */
-@media (max-width: 1366px) {
-	body {
-		font-size: 12pt !important;
-	}
+table {
+	margin: 0 auto;
 }
 
-ul {
+th, td {
+	padding-left: .3em;
+}
+
+th, td, ul {
 	text-align: left;
-	margin-left: 5%;
 }
 
-h2 {
-	padding-top: 0;
-	margin-bottom: 0;
-	padding-bottom: 0;
+h1, h2, h3, h4, ul, p {
+	margin: 0;
+}
+
+h4 {
+	font-size: 1.5em;
+	letter-spacing: 0.15em;
 }
 
 .section {
@@ -50,19 +53,18 @@ h2 {
 	overflow: hidden;
 	width: 24em;
 	height: 34em;
+	padding: 1em;
 	background: var(--parchment);
 	background-size: cover;
 	border: 2px solid #fff;
-	border-radius: 5px;
+	border-radius: var(--radius);
 	box-shadow: 0 0 50px #000;
-	padding: 1em;
 }
 
 .right {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	overflow: auto;
 	text-align: center;
 }
 
@@ -75,21 +77,23 @@ h2 {
 	
 	/* Crop to fit the whole card */
 	object-fit: cover;
+
+	z-index: -2;
 }
 
 .name-banner {
 	position: absolute;
-	bottom: 7%;
-	margin-left: -1em;
+	bottom: 7%; /* I don't remember why I put this here but now it doesn't work without it */
+	margin-left: -1em; /* Because the banner is normally 1em too far to the right for some reason */
+	padding: 92% 0 20px 0; /* Magic numbers */
 	width: calc(100% + 1em);
 	background: url("img/text-ribbon.png") bottom no-repeat;
-	background-size: 85% 20%; /* Magic numbers that make the image the perfect size */
+	background-size: 85% 20%; /* More magic numbers */
 	font-family: "Felipa", cursive;
 	font-weight: bold;
 	font-size: 1.6em;
 	text-align: center;
 	color: #fff;
-	padding: 92% 0 20px 0; /* More magic numbers */
 }
 
 .decoration {
@@ -102,15 +106,10 @@ h2 {
 	margin-top: -1em;
 	width: calc(100% + 2em);
 	height: calc(100% + 2em);
-}
-
-.bio-text {
-	margin: 0 0 0;
+	z-index: -1;
 }
 
 .quote {
-	margin-left:  20px;
-	margin-right: 20px;
 	font-style: italic;
 }
 
@@ -126,33 +125,33 @@ header {
 }
 
 header > div {
-	width: 100%;
-	height: 100%;
-
-	/* Stupid sizing garbage that shouldn't have to exist */
-	box-sizing: border-box;
-
 	display: flex;
 	align-items: center;
+
+	width: 100%;
+	height: 100%;
 	padding: 0 1em;
+
+	box-sizing: border-box; /* Stupid sizing garbage that shouldn't have to exist */
 	background: var(--parchment);
 	background-size: cover;
+
 	border-bottom: 2px solid #fff;
 	box-shadow: 0 0 50px #000;
 }
 
 select {
 	margin: 0 0 0 auto;
-	appearance: none;
-	outline: 0;
-	background: none;
-	border: none;
 	height: 2.25em;
-	border-radius: 5px;
-	padding: 0 .5em 0 .5em;
+	border-radius: var(--radius);
+	padding: 0 .5em;
 	cursor: pointer;
+	margin-right: 1px;
 
-	/* Remove some default styling so it will work right (inherit from global properties) */
+	/* Remove some default styling */
+	border: none;
+	outline: none;
+	background: none;
 	color: unset;
 	font-family: unset;
 	font-size: unset;
@@ -163,11 +162,17 @@ select:hover, select:focus {
 	transition: .1s background ease;
 }
 
+select:focus {
+	border: 1px solid #C3281466;
+	margin-right: 0;
+}
+
 option {
 	color: #000;
+	cursor: pointer;
 }
 
 #fullpage {
 	/* The cards go over the header without this */
-	z-index: -1;
+	z-index: -3;
 }
