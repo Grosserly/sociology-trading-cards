@@ -22,7 +22,7 @@ function generateUL(array) {
 	const length = array.length;
 	let html;
 	if (length > 1) {
-		html = `<ul class="bio-text">`;
+		html = `<ul>`;
 		
 		for (let i=0; i<length; i++) {
 			html += `<li>${array[i]}</li>`;
@@ -31,7 +31,7 @@ function generateUL(array) {
 		html += `</ul>`;
 
 	} else {
-		html = `<p class="bio-text">${array[0]}</p>`;
+		html = `<p>${array[0]}</p>`;
 	}
 	
 	return html;
@@ -54,11 +54,20 @@ function addCard(person, selector) {
 			</div>
 
 			<div class="card right">
-				<h4 class="bio-text">
-					${person.name}<br>
-					Born: ${person.born}<br>
-					Died: ${person.died}
-				</h4>
+				<h4>${person.name}</h4>
+				
+				<table>
+					<tr>
+						<td>Born:</td>
+						<td>${person.born.date}</td>
+						<td>${person.born.location}</td>
+					</tr>
+					<tr>
+						<td>Died:</td>
+						<td>${person.died.date}</td>
+						<td>${person.died.location}</td>
+					</tr>
+				</table>
 
 				<div>
 					<h2>Best known theory:<br>
@@ -68,7 +77,7 @@ function addCard(person, selector) {
 
 				<div>
 					<h2>Why is ${(person.male) ? "he" : "she"} famous?</h2>
-					<p class="bio-text">${person.significance}</p>
+					<p>${person.significance}</p>
 				</div>
 
 				<div>
@@ -76,8 +85,7 @@ function addCard(person, selector) {
 					${generateUL(person.findings)}
 				</div>
 
-				<br>
-				<p class="bio-text quote">${person.quote}</p>
+				<p class="quote">${person.quote}</p>
 
 			</div>
 		</div>
@@ -114,3 +122,4 @@ function populateMenu(people, selector) {
 	}
 	menu.innerHTML = html;
 }
+
