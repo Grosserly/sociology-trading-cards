@@ -6,7 +6,7 @@
 }
 
 :root {
-	--parchment: #E2CA8E url("parchment-paper.jpg");
+	--parchment: #E2CA8E url("img/parchment-paper.jpg");
 	--radius: .5em;
 }
 
