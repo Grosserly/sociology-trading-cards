@@ -7,10 +7,10 @@
 -->
 
 <head>
-    <meta charset="UTF-8"> 
-    <title>Sociologist Trading Cards</title>
-    <link rel="icon" href="favicon.png">
-    <link href="style.css" rel="stylesheet">
+	<meta charset="UTF-8"> 
+	<title>Sociologist Trading Cards</title>
+	<link rel="icon" href="favicon.png">
+	<link href="style.css" rel="stylesheet">
 
 	<link href="fullpage.min.css" rel="stylesheet"> <!-- fullPage.js: https://github.com/alvarotrigo/fullPage.js -->
 	<script src="fullpage.min.js"></script>
@@ -176,20 +176,28 @@
 		 * Found on StackOverflow by Aureliano Far Suau: https://stackoverflow.com/a/22257774
 		 */
 		let ts;
+		let moved = false;
 		addEventListener("touchstart", e => {
 			ts = e.touches[0].clientY;
 		});
 
-		addEventListener("touchend", e => {
-			const te = e.changedTouches[0].clientY;
-			if (ts > te + 5)
-				fullpage_api.moveSectionDown();
-			else if (ts < te - 5)
-				fullpage_api.moveSectionUp();
+		addEventListener("touchmove", e => {
+			if (!moved) { // Only do this once per touch
+				moved = true;
+				const tm = e.changedTouches[0].clientY;
+				if (ts > tm + 5)
+					fullpage_api.moveSectionDown();
+				else if (ts < tm - 5)
+					fullpage_api.moveSectionUp();
+			}
+		});
+
+		addEventListener("touchend", e => {			
+			moved = false;
 		});
 
 	});
 </script>
-    
+	
 </body>
 </html>
