@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css?family=Crimson+Text|Felipa");
 
 @keyframes fadein {
@@ -7,7 +6,7 @@
 }
 
 :root {
-	--parchment: #E2CA8E url("img/parchment-paper.jpg");
+	--parchment: #E2CA8E url("parchment-paper.jpg");
 	--radius: .5em;
 }
 
@@ -37,9 +36,13 @@ h1, h2, h3, h4, ul, p {
 	margin: 0;
 }
 
+h1 {
+	letter-spacing: .025em;
+}
+
 h4 {
 	font-size: 1.5em;
-	letter-spacing: 0.15em;
+	letter-spacing: .15em;
 }
 
 .section {
@@ -77,21 +80,20 @@ h4 {
 	
 	/* Crop to fit the whole card */
 	object-fit: cover;
-
-	z-index: -2;
 }
 
 .name-banner {
 	position: absolute;
-	bottom: 7%; /* I don't remember why I put this here but now it doesn't work without it */
-	margin-left: -1em; /* Because the banner is normally 1em too far to the right for some reason */
-	padding: 92% 0 20px 0; /* Magic numbers */
-	width: calc(100% + 1em);
+	right: 0; /* Right edge of the banner on the right edge of the card */
+	bottom: 1em; /* Bottom of the banner 2em above the bottom of the card */
+	width: 100%;
+	height: 2.1em; /* Padding-top combines with height to make 3.5em */
+	padding-top: 1.4em; /* This magic ratio puts the text in the center */
 	background: url("img/text-ribbon.png") bottom no-repeat;
-	background-size: 85% 20%; /* More magic numbers */
+	background-size: calc(100% - 2em) 100%;
 	font-family: "Felipa", cursive;
 	font-weight: bold;
-	font-size: 1.6em;
+	font-size: 1.75em;
 	text-align: center;
 	color: #fff;
 }
@@ -106,7 +108,6 @@ h4 {
 	margin-top: -1em;
 	width: calc(100% + 2em);
 	height: calc(100% + 2em);
-	z-index: -1;
 }
 
 .quote {
@@ -174,5 +175,5 @@ option {
 
 #fullpage {
 	/* The cards go over the header without this */
-	z-index: -3;
+	z-index: -1;
 }
