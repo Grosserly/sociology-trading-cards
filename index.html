@@ -7,12 +7,12 @@
 -->
 
 <head>
-	<meta charset="UTF-8"> 
-	<title>Sociologist Trading Cards</title>
-	<link rel="icon" href="favicon.png">
-	<link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8"> 
+    <title>Sociologist Trading Cards</title>
+    <link rel="icon" href="favicon.png">
+    <link href="style.css" rel="stylesheet">
 
-	<link href="fullpage.min.css" rel="stylesheet">
+	<link href="fullpage.min.css" rel="stylesheet"> <!-- fullPage.js: https://github.com/alvarotrigo/fullPage.js -->
 	<script src="fullpage.min.js"></script>
 </head>
 <body>
@@ -50,7 +50,7 @@
 					"Society requires a religion to properly function"
 				],
 				quote: "Know yourself to improve yourself.",
-				portraitPath: "img/portraits/auguste-comte.jpg",
+				portraitPath: "portraits/auguste-comte.jpg",
 				anchor: "comte"
 			},
 
@@ -73,7 +73,7 @@
 					"Findings developed into eugenics, the primary ideology behind nazism"
 				],
 				quote: "The great aim of education is not knowledge but action.",
-				portraitPath: "img/portraits/herbert-spencer.jpg",
+				portraitPath: "portraits/herbert-spencer.jpg",
 				anchor: "spencer"
 			},
 
@@ -96,7 +96,7 @@
 					"Capitalism leads to crises—specifically overproduction"
 				],
 				quote: "The philosophers have only interpreted the world, in various ways. The point, however, is to change it.",
-				portraitPath: "img/portraits/karl-marx.jpg",
+				portraitPath: "portraits/karl-marx.jpg",
 				anchor: "communism"
 			},
 
@@ -119,7 +119,7 @@
 					"The Common Consciousness, made of social facts, drives society"
 				],
 				quote: "When mores are sufficient, laws are unnecessary; when mores are insufficient, laws are unenforceable.",
-				portraitPath: "img/portraits/emile-durkheim.jpg",
+				portraitPath: "portraits/emile-durkheim.jpg",
 				anchor: "durkheim"
 			},
 
@@ -142,7 +142,7 @@
 					"The modern state is an apparatus of rules directed by a group of charismatic leaders"
 				],
 				quote: ". . . man would not have attained the possible unless time and again he had reached out for the impossible.",
-				portraitPath: "img/portraits/max-weber.jpg",
+				portraitPath: "portraits/max-weber.jpg",
 				anchor: "weber"
 			},
 		];
@@ -168,6 +168,26 @@
 				menu.value = destination.anchor;
 			}
 		});
+
+
+		/**
+		 * Fix scrolling.
+		 * 
+		 * Found on StackOverflow by Aureliano Far Suau: https://stackoverflow.com/a/22257774
+		 */
+		let ts;
+		addEventListener("touchstart", e => {
+			ts = e.touches[0].clientY;
+		});
+
+		addEventListener("touchend", e => {
+			const te = e.changedTouches[0].clientY;
+			if (ts > te + 5)
+				fullpage_api.moveSectionDown();
+			else if (ts < te - 5)
+				fullpage_api.moveSectionUp();
+		});
+
 	});
 </script>
     
