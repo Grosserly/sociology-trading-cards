@@ -1,4 +1,4 @@
-# [The Founders of Sociology](https://grosserly.github.io/sociology-trading-cards/)
+# [The Founders of Sociology](https://the-garlic-os.github.io/sociology-trading-cards/)
 A sociology project.
 
 ## TODO
